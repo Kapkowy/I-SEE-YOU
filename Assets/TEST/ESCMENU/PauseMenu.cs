@@ -10,19 +10,22 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject panel;
     public int counter;
+    public bool otware = false;
+    private inventory myScripts;
     void Start()
     {
         panel.SetActive(false);
         counter = 0;
         Time.timeScale = 1;
-        
+        myScripts = GetComponent<inventory>();
+
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             counter += 1;
-            print("test");
+            otware = true;
             panel.SetActive(true);
             Time.timeScale = 0;
             print(panel.name + " GAME TIME STOPPED");
@@ -32,6 +35,7 @@ public class PauseMenu : MonoBehaviour
             counter = 0;
             panel.SetActive(false);
             Time.timeScale = 1;
+            otware = false;
             print(panel.name + " GAME TIME NORMAL");
         }
         if (counter == 1)
