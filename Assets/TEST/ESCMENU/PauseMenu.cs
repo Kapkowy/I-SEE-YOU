@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Security.Cryptography;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +18,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         myScripts = GetComponent<inventory>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
     void Update()
     {
@@ -29,6 +31,9 @@ public class PauseMenu : MonoBehaviour
             panel.SetActive(true);
             Time.timeScale = 0;
             print(panel.name + " GAME TIME STOPPED");
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         if (counter == 2)
         {
@@ -37,6 +42,9 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1;
             otware = false;
             print(panel.name + " GAME TIME NORMAL");
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         if (counter == 1)
         {
